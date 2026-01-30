@@ -64,10 +64,15 @@
                     </div>
                     {% endif %}
                     <div class="movie-overlay">
-                        <button class="seen-toggle" title="Toggle seen status">
-                            <span class="seen-icon">&#10003;</span>
-                            <span class="seen-text">{{ 'Seen' if movie.seen else 'Mark as Seen' }}</span>
-                        </button>
+                        <div class="overlay-buttons">
+                            {% if movie.source_url %}
+                            <a href="{{ movie.source_url }}" class="overlay-btn imdb-btn" target="_blank" rel="noopener">IMDb</a>
+                            {% endif %}
+                            <button class="seen-toggle" title="Toggle seen status">
+                                <span class="seen-icon">&#10003;</span>
+                                <span class="seen-text">{{ 'Seen' if movie.seen else 'Mark as Seen' }}</span>
+                            </button>
+                        </div>
                     </div>
                     <button class="delete-btn" title="Remove from collection">&times;</button>
                 </div>
