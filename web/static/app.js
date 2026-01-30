@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentGenre = 'all';
     let currentSearch = '';
-    let currentSeenFilter = 'all';
+    let currentSeenFilter = 'not-seen';
     let searchTimeout = null;
 
     /**
