@@ -1,0 +1,14 @@
+# Discord Bot
+discord.py>=2.3.0
+
+# TMDB API
+requests>=2.31.0
+
+# Supabase
+supabase>=2.0.0
+
+# Web Server
+flask>=3.0.0
+
+# Environment Variables
+python-dotenv>=1.0.0

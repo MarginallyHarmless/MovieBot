@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGPL Movies</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>SGPL Movies</h1>
+            <p class="subtitle">{{ movies|length }} movies shared by friends</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Search, Filter, and Sort Controls -->
+        <section class="controls">
+            <div class="controls-row">
+                <div class="search-box">
+                    <input
+                        type="text"
+                        id="search-input"
+                        placeholder="Search movies..."
+                        autocomplete="off"
+                    >
+                </div>
+                <div class="seen-filter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="seen">Seen</button>
+                    <button class="filter-btn" data-filter="not-seen">Not Seen</button>
+                </div>
+                <div class="sort-control">
+                    <select id="sort-select">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                    </select>
+                </div>
+            </div>
+            <div class="genre-filters" id="genre-filters">
+                <button class="genre-tag active" data-genre="all">All</button>
+                {% for genre in genres %}
+                <button class="genre-tag" data-genre="{{ genre }}">{{ genre }}</button>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Movie Grid -->
+        <section class="movie-grid" id="movie-grid">
+            {% for movie in movies %}
+            <article class="movie-card {% if movie.seen %}seen{% endif %}"
+                     data-id="{{ movie.id }}"
+                     data-genres="{{ movie.genres | join(',') }}"
+                     data-title="{{ movie.title | lower }}"
+                     data-seen="{{ 'true' if movie.seen else 'false' }}"
+                     data-added="{{ movie.added_at }}">
+                <div class="poster-container">
+                    {% if movie.poster_url %}
+                    <img
+                        src="{{ movie.poster_url }}"
+                        alt="{{ movie.title }} poster"
+                        class="poster"
+                        loading="lazy"
+                    >
+                    {% else %}
+                    <div class="poster placeholder">
+                        <span>No Poster</span>
+                    </div>
+                    {% endif %}
+                    <div class="movie-overlay">
+                        <button class="seen-toggle" title="Toggle seen status">
+                            <span class="seen-icon">&#10003;</span>
+                            <span class="seen-text">{{ 'Seen' if movie.seen else 'Mark as Seen' }}</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="movie-info">
+                    <h2 class="movie-title">{{ movie.title }}</h2>
+                    <p class="movie-year">{{ movie.year or 'Unknown year' }}</p>
+                    <div class="movie-genres">
+                        {% for genre in movie.genres[:3] %}
+                        <span class="genre-pill">{{ genre }}</span>
+                        {% endfor %}
+                    </div>
+                    {% if movie.overview %}
+                    <p class="movie-overview">{{ movie.overview[:150] }}{% if movie.overview|length > 150 %}...{% endif %}</p>
+                    {% endif %}
+                    <div class="added-by">
+                        {% if movie.added_by_avatar %}
+                        <img src="{{ movie.added_by_avatar }}" alt="" class="avatar">
+                        {% endif %}
+                        <span>Added by {{ movie.added_by_username or 'Unknown' }}</span>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </section>
+
+        <!-- Empty State -->
+        <section class="empty-state" id="empty-state" style="display: none;">
+            <p>No movies found matching your filters.</p>
+        </section>
+
+        {% if not movies %}
+        <section class="empty-state">
+            <h2>No movies yet!</h2>
+            <p>Share an IMDb link in Discord to add movies to the collection.</p>
+        </section>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>SGPL Movies &bull; Share movie links in Discord to add them here</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
