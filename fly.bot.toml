@@ -1,5 +1,5 @@
-# Fly.io configuration for SGPL Movies Discord Bot
-app = "sgpl-movies-bot"
+# Fly.io configuration for PRLN Movies Discord Bot
+app = "prln-movies-bot"
 primary_region = "iad"
 
 [build]

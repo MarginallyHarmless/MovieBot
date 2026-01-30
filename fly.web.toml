@@ -1,5 +1,5 @@
-# Fly.io configuration for SGPL Movies Website
-app = "sgpl-movies-web"
+# Fly.io configuration for PRLN Movies Website
+app = "prln-movies-web"
 primary_region = "iad"
 
 [build]

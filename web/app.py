@@ -127,6 +127,6 @@ def add_movie():
 
 
 if __name__ == '__main__':
-    print("[STARTING] SGPL Movies Website...")
+    print("[STARTING] PRLN Movies Website...")
     print("           Visit http://localhost:5000 to view your collection")
     app.run(debug=True, port=5000)

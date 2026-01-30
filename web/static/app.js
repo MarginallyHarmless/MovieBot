@@ -1,5 +1,5 @@
 /**
- * SGPL Movies - Client-side search, filter, sort, and movie management
+ * PRLN Movies - Client-side search, filter, sort, and movie management
  */
 
 document.addEventListener('DOMContentLoaded', () => {

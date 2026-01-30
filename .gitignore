@@ -27,3 +27,6 @@ Thumbs.db
 
 # Claude Code
 .claude/
+
+# Local documentation
+HOW-IT-WORKS.md

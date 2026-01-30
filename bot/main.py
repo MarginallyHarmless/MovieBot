@@ -1,5 +1,5 @@
 """
-SGPL Movies Discord Bot
+PRLN Movies Discord Bot
 
 A bot that detects movie links (IMDb/Netflix) and saves them to a database.
 """
@@ -237,7 +237,7 @@ def main():
         print("        Make sure you have a .env file with your bot token.")
         return
 
-    print("[STARTING] SGPL Movies Bot...")
+    print("[STARTING] PRLN Movies Bot...")
     bot.run(DISCORD_TOKEN)
 
 
