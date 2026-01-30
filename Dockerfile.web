@@ -6,6 +6,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY web/ ./web/
+COPY bot/database.py ./web/
+COPY bot/tmdb_client.py ./web/
 
 EXPOSE 8080
 

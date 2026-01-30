@@ -26,31 +26,20 @@ body {
     min-height: 100vh;
 }
 
-/* Header */
-header {
-    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-    padding: 2rem 1rem;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-}
-
-.header-content h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: var(--accent);
-}
-
-.subtitle {
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-}
-
 /* Main Content */
 main {
     max-width: 1400px;
     margin: 0 auto;
     padding: 2rem 1rem;
+}
+
+/* Movie Count */
+.movie-count {
+    flex: 1;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
 }
 
 /* Controls Section */
@@ -359,10 +348,6 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .header-content h1 {
-        font-size: 2rem;
-    }
-
     .controls-row {
         flex-direction: column;
         align-items: stretch;

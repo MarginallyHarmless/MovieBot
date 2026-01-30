@@ -7,13 +7,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1>SGPL Movies</h1>
-            <p class="subtitle">{{ movies|length }} movies shared by friends</p>
-        </div>
-    </header>
-
     <main>
         <!-- Search, Filter, and Sort Controls -->
         <section class="controls">
@@ -26,6 +19,7 @@
                         autocomplete="off"
                     >
                 </div>
+                <p class="movie-count">{{ movies|length }} movies shared by friends</p>
                 <div class="seen-filter">
                     <button class="filter-btn active" data-filter="all">All</button>
                     <button class="filter-btn" data-filter="seen">Seen</button>
