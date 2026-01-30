@@ -26,8 +26,9 @@ IMDB_PATTERN = re.compile(
 
 # Netflix URL patterns
 # Matches: netflix.com/title/12345678, netflix.com/watch/12345678
+# Also handles locale prefixes like /ro-en/, /en-gb/, /ro/
 NETFLIX_PATTERN = re.compile(
-    r'https?://(?:www\.)?netflix\.com/(?:title|watch)/(\d+)',
+    r'https?://(?:www\.)?netflix\.com/(?:[a-z]{2}(?:-[a-z]{2})?/)?(?:title|watch)/(\d+)',
     re.IGNORECASE
 )
 

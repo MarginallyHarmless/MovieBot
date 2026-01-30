@@ -5,6 +5,7 @@ A bot that detects movie links (IMDb/Netflix) and saves them to a database.
 """
 
 import os
+import re
 import sys
 from pathlib import Path
 import discord
@@ -72,8 +73,16 @@ async def on_message(message: discord.Message):
                 movie = tmdb.find_by_imdb_id(link.imdb_id)
             elif link.source == 'rottentomatoes' and link.rt_slug:
                 # Convert slug to title (replace underscores with spaces)
-                title = link.rt_slug.replace('_', ' ')
-                movie = tmdb.search_movie(title)
+                # Extract year if slug ends with 4 digits (e.g., movie_name_2013)
+                slug = link.rt_slug
+                year_match = re.search(r'_(\d{4})$', slug)
+                if year_match:
+                    year = int(year_match.group(1))
+                    title = slug[:year_match.start()].replace('_', ' ')
+                    movie = tmdb.search_movie(title, year=year)
+                else:
+                    title = slug.replace('_', ' ')
+                    movie = tmdb.search_movie(title)
             elif link.source == 'netflix':
                 # Netflix links are harder to parse - skip silently
                 continue
@@ -168,8 +177,16 @@ async def scan(ctx: commands.Context, limit: int = 500):
                 if link.source == 'imdb' and link.imdb_id:
                     movie = tmdb.find_by_imdb_id(link.imdb_id)
                 elif link.source == 'rottentomatoes' and link.rt_slug:
-                    title = link.rt_slug.replace('_', ' ')
-                    movie = tmdb.search_movie(title)
+                    # Extract year if slug ends with 4 digits
+                    slug = link.rt_slug
+                    year_match = re.search(r'_(\d{4})$', slug)
+                    if year_match:
+                        year = int(year_match.group(1))
+                        title = slug[:year_match.start()].replace('_', ' ')
+                        movie = tmdb.search_movie(title, year=year)
+                    else:
+                        title = slug.replace('_', ' ')
+                        movie = tmdb.search_movie(title)
                 else:
                     continue
 
