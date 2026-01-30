@@ -9,6 +9,7 @@ supabase>=2.0.0
 
 # Web Server
 flask>=3.0.0
+gunicorn>=21.0.0
 
 # Environment Variables
 python-dotenv>=1.0.0
