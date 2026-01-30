@@ -102,6 +102,28 @@ class TMDBClient:
         movie = data['results'][0]
         return self._format_movie(movie)
 
+    def search_movies(self, title: str, limit: int = 10) -> list[dict]:
+        """
+        Search for movies by title and return multiple results.
+
+        Args:
+            title: Movie title to search for
+            limit: Maximum number of results to return
+
+        Returns:
+            List of movie dicts
+        """
+        data = self._make_request('/search/movie', params={'query': title})
+
+        if not data or not data.get('results'):
+            return []
+
+        # Return formatted results
+        results = []
+        for movie in data['results'][:limit]:
+            results.append(self._format_movie(movie))
+        return results
+
     def get_movie_details(self, tmdb_id: int) -> Optional[dict]:
         """
         Get detailed information about a movie.

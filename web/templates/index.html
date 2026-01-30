@@ -37,6 +37,7 @@
                         <option value="oldest">Oldest First</option>
                     </select>
                 </div>
+                <button class="add-movie-btn" id="add-movie-btn">+ Add Movie</button>
             </div>
             <div class="genre-filters" id="genre-filters">
                 <button class="genre-tag active" data-genre="all">All</button>
@@ -74,6 +75,7 @@
                             <span class="seen-text">{{ 'Seen' if movie.seen else 'Mark as Seen' }}</span>
                         </button>
                     </div>
+                    <button class="delete-btn" title="Remove from collection">&times;</button>
                 </div>
                 <div class="movie-info">
                     <h2 class="movie-title">{{ movie.title }}</h2>
@@ -109,6 +111,25 @@
         </section>
         {% endif %}
     </main>
+
+    <!-- Add Movie Modal -->
+    <div class="modal-overlay" id="add-movie-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Add Movie</h2>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input
+                    type="text"
+                    id="tmdb-search-input"
+                    placeholder="Search for a movie..."
+                    autocomplete="off"
+                >
+                <div class="search-results" id="search-results"></div>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <p>SGPL Movies &bull; Share movie links in Discord to add them here</p>
