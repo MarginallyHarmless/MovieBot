@@ -1,0 +1,14 @@
+# Fly.io configuration for SGPL Movies Discord Bot
+app = "sgpl-movies-bot"
+primary_region = "iad"
+
+[build]
+  dockerfile = "Dockerfile.bot"
+
+# Bot doesn't need HTTP, it runs as a background worker
+[processes]
+  bot = "python -u bot/main.py"
+
+[env]
+  # Non-secret environment variables
+  # Secrets are set via: fly secrets set KEY=value
